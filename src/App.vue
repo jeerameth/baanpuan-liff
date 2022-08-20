@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <section id="profile">
-      <img id="pictureUrl" src="https://mokmoon.com/images/ic_liff.png" />
+      <img id="profileImage" :src="profile.imgUrl" width="10" hight="10" />
+      {{ profile.displayName }}
     </section>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue';
-import { inject } from 'vue';
+import { inject, onMounted, reactive } from 'vue';
+
 export default {
   name: 'App',
   components: {
@@ -16,7 +18,21 @@ export default {
   },
   setup() {
     const $liff = inject('$liff');
-    $liff.init(function (data) {});
+    const profile = reactive({
+      displayName: null,
+      imgUrl: null,
+    });
+
+    onMounted(async () => {
+      await liff.init({ liffId: '1657402535-dDW7EMAl' });
+      const response = await liff.getProfile();
+      profile.displayName = response.displayName;
+      profile.imgUrl = response.pictureUrl;
+    });
+
+    return {
+      profile,
+    };
   },
 };
 </script>
