@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <section id="profile">
-      <img id="profileImage" :src="profile.imgUrl" width="10" hight="10" />
-      {{ profile.displayName }}
+      <img id="profileImage" :src="profile.imgUrl" class="w-12" />
+      <div class="text-xl">
+        {{ profile.displayName }}
+      </div>
     </section>
   </div>
 </template>
@@ -46,4 +48,21 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+/* 
+#profileImage {
+  margin: 0 auto;
+  width: 24%;
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  box-pack: center;
+  box-align: center;
+  -moz-border-radius: 256px;
+  -webkit-border-radius: 256px;
+  border-radius: 256px;
+} */
 </style>
